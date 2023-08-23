@@ -15,8 +15,14 @@ class ProductManager {
         }
         if(this.products.some(product => product.code === code)){
 
-            return console.log("El producto ya existe")
+            return console.log("Error: El producto ya existe")
         } 
+
+        if(this.products.length==0){
+            newId = 1
+        } else {
+            newId= this.products[this.products.length-1].id+1
+        }
         //creamos el producto
         const newProduct= {
             id:newId,
@@ -27,12 +33,7 @@ class ProductManager {
             stock,
 
         }    
-        if(this.products.length==0){
-            newId = 1
-        } else {
-            newId= this.products[this.products.length-1].id+1
-        }
-
+        
         this.products.push(newProduct)
         console.log("producto agregado")
             
@@ -47,12 +48,13 @@ class ProductManager {
         }   
 }    
         
-const producto1 = new ProductManager();
+const product1 = new ProductManager();
 
-producto1.addProduct("estanteria","muebles de madera de pino","sin imagen","abc123")
-producto1.getProducts();
-producto1.addProduct("producto prueba","Este es un producto prueba","sin imagen","abc123")
-producto1.getProducts();
+product1.addProduct("Estanteria","muebles de madera de pino","sin imagen","abc123")
+product1.addProduct("Comoda","muebles de madera de cedro","sin imagen","a1b2c3",10)
+product1.getProducts();
+product1.addProduct("producto prueba","Este es un producto prueba","sin imagen","abc123")
+product1.getProductById(2)
 
 //"producto prueba"
 //"Este es un producto prueba"
